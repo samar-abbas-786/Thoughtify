@@ -16,7 +16,7 @@ const Login = () => {
 
     try {
       // Call your custom API endpoint
-      const response = await fetch("/api/auth/login", {
+      const response = await fetch("/api/USER/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -26,6 +26,7 @@ const Login = () => {
       });
 
       const data = await response.json();
+      localStorage.setItem("user_id", data.user?.id);
 
       if (!response.ok) {
         throw new Error(data.message || "Login failed");
@@ -37,7 +38,7 @@ const Login = () => {
       }
 
       // Redirect to dashboard on success
-      router.push("/dashboard");
+      router.push("/");
     } catch (err) {
       setError(err.message || "Login failed. Please try again.");
     } finally {

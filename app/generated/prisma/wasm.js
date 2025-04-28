@@ -128,8 +128,7 @@ exports.Prisma.PostScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
-  user_id: 'user_id',
-  created_at: 'created_at'
+  user_id: 'user_id'
 };
 
 exports.Prisma.SortOrder = {

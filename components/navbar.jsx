@@ -11,8 +11,8 @@ const Navbar = () => {
   useEffect(() => {
     // Check if user_id exists in localStorage
     const userId = localStorage.getItem("user_id");
-    setIsLoggedIn(!!userId);
-  }, []);
+    setIsLoggedIn(userId);
+  }, [isLoggedIn]);
 
   return (
     <nav className="bg-white shadow-sm">

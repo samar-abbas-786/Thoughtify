@@ -25,8 +25,8 @@ const SignUp = () => {
       });
 
       const data = await res.json();
-      // console.log("data", data);
       localStorage.setItem("user_id", data.user?.id);
+      localStorage.setItem("user", JSON.stringify(data?.user));
 
       if (!res.ok) {
         throw new Error(data.message || "Signup failed");

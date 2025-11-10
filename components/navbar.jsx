@@ -1,15 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
-import { FaUserCircle } from "react-icons/fa"; // <-- Importing Profile Icon
+import { FaUserCircle } from "react-icons/fa";
+import { authContext } from "@context/authContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const user = useContext(authContext);
 
   useEffect(() => {
-    // Check if user_id exists in localStorage
     const userId = localStorage.getItem("user_id");
     setIsLoggedIn(userId);
   }, [isLoggedIn]);

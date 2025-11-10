@@ -15,29 +15,27 @@ const Login = () => {
     setError("");
 
     try {
-      // Call your custom API endpoint
       const response = await fetch("/api/USER/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
-        credentials: "include", // Important for cookies if using session-based auth
+        credentials: "include",
       });
 
       const data = await response.json();
       localStorage.setItem("user_id", data.user?.id);
+      localStorage.setItem("user", JSON.stringify(data?.user));
 
       if (!response.ok) {
         throw new Error(data.message || "Login failed");
       }
 
-      // Store token if using JWT (optional)
       if (data.token) {
         localStorage.setItem("token", data.token);
       }
 
-      // Redirect to dashboard on success
       router.push("/");
     } catch (err) {
       setError(err.message || "Login failed. Please try again.");

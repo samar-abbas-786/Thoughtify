@@ -110,10 +110,7 @@ const Profile = () => {
                 <p className="text-gray-600 text-sm">
                   {post.description || "No description available."}
                 </p>
-                <p className="text-gray-400 text-xs mt-2 mb-3">
-                  Posted on:{" "}
-                  {new Date(post.createdAt).toLocaleDateString("en-IN")}
-                </p>
+                <p className="text-gray-400 text-xs mt-2 mb-3"></p>
 
                 {/* 🗑 Delete Button */}
                 <button

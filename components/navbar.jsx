@@ -13,7 +13,7 @@ const Navbar = () => {
   useEffect(() => {
     const userId = localStorage.getItem("user_id");
     setIsLoggedIn(userId);
-  }, [isLoggedIn]);
+  }, [user]);
 
   return (
     <nav className="bg-white shadow-sm">
@@ -57,7 +57,7 @@ const Navbar = () => {
               </>
             ) : (
               <Link
-                href="/"
+                href="/profile"
                 className="flex items-center space-x-2 text-gray-900 hover:text-indigo-600 text-sm font-medium"
               >
                 <FaUserCircle size={24} />
@@ -143,7 +143,7 @@ const Navbar = () => {
               </>
             ) : (
               <Link
-                href="/"
+                href="/profile"
                 className="flex items-center space-x-2 px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100"
               >
                 <FaUserCircle size={24} />

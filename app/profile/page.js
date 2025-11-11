@@ -7,6 +7,12 @@ const Profile = () => {
   const [myPosts, setMyPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState(null);
+  const [updatingId, setUpdatingId] = useState(null);
+
+  const [title, setTitle] = useState(null);
+  const [description, setDescription] = useState(null);
+
+  const [showDialog, setShowDialog] = useState(false);
 
   // 1️⃣ Load user from localStorage
   useEffect(() => {
@@ -67,6 +73,88 @@ const Profile = () => {
       </div>
     );
   }
+  const handleUpdate = async (id) => {
+    try {
+      setShowDialog(true);
+      const updated = await axios.post("/api/POST/updatepost", {
+        id: id,
+        title: title,
+        description: description,
+      });
+      if (updated.data.status == 200) {
+        alert("Post Updates Successfully");
+      }
+      setShowDialog(false);
+    } catch (error) {
+      setShowDialog(false);
+    }
+  };
+  const handleShowDialog = (id, title, description) => {
+    setShowDialog(!showDialog);
+    setUpdatingId(id);
+    setTitle(title);
+    setDescription(description);
+  };
+  if (showDialog) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-gray-900/30 backdrop-blur-sm z-50">
+        <div className="bg-white border border-gray-200 rounded-2xl shadow-2xl p-6 w-[350px] text-gray-800">
+          <h2 className="text-xl font-semibold mb-4 text-center text-gray-900">
+            Update Details
+          </h2>
+
+          <div className="flex flex-col space-y-4">
+            <div>
+              <label
+                htmlFor="title"
+                className="block text-sm font-medium mb-1 text-gray-700"
+              >
+                Title
+              </label>
+              <input
+                id="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-gray-400"
+                placeholder="Enter title..."
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="description"
+                className="block text-sm font-medium mb-1 text-gray-700"
+              >
+                Description
+              </label>
+              <textarea
+                id="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                className="w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-gray-400 resize-none h-24"
+                placeholder="Enter description..."
+              />
+            </div>
+
+            <div className="flex justify-end space-x-3 mt-4">
+              <button
+                onClick={() => setShowDialog(false)}
+                className="px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-700 transition-all"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => handleUpdate(updatingId)}
+                className="px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white transition-all"
+              >
+                Update
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // 5️⃣ Profile + Posts UI
   return (
@@ -113,17 +201,32 @@ const Profile = () => {
                 <p className="text-gray-400 text-xs mt-2 mb-3"></p>
 
                 {/* 🗑 Delete Button */}
-                <button
-                  onClick={() => handleDelete(post.id)}
-                  disabled={deletingId === post.id}
-                  className={`px-4 py-1 text-sm rounded-md text-white transition-colors ${
-                    deletingId === post.id
-                      ? "bg-gray-400 cursor-not-allowed"
-                      : "bg-red-500 hover:bg-red-600"
-                  }`}
-                >
-                  {deletingId === post.id ? "Deleting..." : "Delete"}
-                </button>
+                <div className="w-full flex justify-between">
+                  <button
+                    onClick={() => handleDelete(post.id)}
+                    disabled={deletingId === post.id}
+                    className={`px-4 py-1 text-sm rounded-md text-white transition-colors ${
+                      deletingId === post.id
+                        ? "bg-gray-400 cursor-not-allowed"
+                        : "bg-red-500 hover:bg-red-600"
+                    }`}
+                  >
+                    {deletingId === post.id ? "Deleting..." : "Delete"}
+                  </button>
+
+                  <button
+                    onClick={() =>
+                      handleShowDialog(post.id, post.title, post.description)
+                    }
+                    className={`px-4 py-1 text-sm rounded-md text-white transition-colors ${
+                      deletingId === post.id
+                        ? "bg-gray-400 cursor-not-allowed"
+                        : "bg-yellow-500 hover:bg-yellow-600"
+                    }`}
+                  >
+                    Update
+                  </button>
+                </div>
               </div>
             ))}
           </div>

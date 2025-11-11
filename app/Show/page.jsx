@@ -1,11 +1,13 @@
 "use client";
 import ThoughtCard from "@components/thougtCard";
+import axios from "@node_modules/axios";
 import { useState, useEffect } from "react";
 
 const ShowPost = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
 
   useEffect(() => {
     async function getPost() {
@@ -17,7 +19,9 @@ const ShowPost = () => {
         }
 
         const data = await response.json();
-        setPosts(data.post || []);
+        if (localStorage.getItem("user")) {
+          setPosts(data.post || []);
+        }
       } catch (err) {
         setError(err.message);
       } finally {
@@ -27,6 +31,8 @@ const ShowPost = () => {
 
     getPost();
   }, []);
+
+ 
 
   if (loading) {
     return (

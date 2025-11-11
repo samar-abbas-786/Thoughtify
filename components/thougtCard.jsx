@@ -23,7 +23,7 @@ const ThoughtCard = ({ title, description, authorName, id }) => {
         {description.length > 200 ? description : description}
       </p>
 
-      <Link href={`/profile/${id}`} className="flex items-center group">
+      <Link href={`/profile`} className="flex items-center group">
         <div className="flex-shrink-0">
           <div className="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-semibold text-md ring-2 ring-indigo-300 group-hover:ring-indigo-500 transition-all duration-300">
             {authorName.charAt(0).toUpperCase()}

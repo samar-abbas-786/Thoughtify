@@ -11,6 +11,7 @@ const Profile = () => {
 
   const [title, setTitle] = useState(null);
   const [description, setDescription] = useState(null);
+  const [isUpdating, setIsUpdating] = useState(false);
 
   const [showDialog, setShowDialog] = useState(false);
 
@@ -42,7 +43,7 @@ const Profile = () => {
     };
 
     getMyPosts();
-  }, [user]);
+  }, [user, title, description]);
 
   // 3️⃣ Handle delete
   const handleDelete = async (postId) => {
@@ -75,7 +76,8 @@ const Profile = () => {
   }
   const handleUpdate = async (id) => {
     try {
-      setShowDialog(true);
+      setIsUpdating(true);
+
       const updated = await axios.post("/api/POST/updatepost", {
         id: id,
         title: title,
@@ -84,9 +86,10 @@ const Profile = () => {
       if (updated.data.status == 200) {
         alert("Post Updates Successfully");
       }
+      setIsUpdating(false);
       setShowDialog(false);
     } catch (error) {
-      setShowDialog(false);
+      setIsUpdating(false);
     }
   };
   const handleShowDialog = (id, title, description) => {
@@ -147,7 +150,7 @@ const Profile = () => {
                 onClick={() => handleUpdate(updatingId)}
                 className="px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white transition-all"
               >
-                Update
+                {isUpdating ? "Updating..." : "Update"}
               </button>
             </div>
           </div>

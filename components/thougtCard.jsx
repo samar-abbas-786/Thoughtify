@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { motion } from "motion/react";
 import Link from "next/link";
 
@@ -20,9 +20,7 @@ const ThoughtCard = ({ title, description, authorName, id }) => {
       )}
 
       <p className="text-gray-600 text-sm whitespace-pre-line mb-6 leading-relaxed">
-        {description.length > 200
-          ? description.substring(0, 200) + "..."
-          : description}
+        {description.length > 200 ? description : description}
       </p>
 
       <Link href={`/profile/${id}`} className="flex items-center group">

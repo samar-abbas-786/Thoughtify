@@ -1,23 +1,18 @@
 ```mermaid
-%%{init: {"themeVariables": {"er": {"layout": "horizontal"}}}}%%
-erDiagram
-USERS {
-    ObjectId _id PK
-    string name
-    string email
-    string passwordHash
-    date createdAt
-}
-SAVED_PLANS {
-    ObjectId _id PK
-    ObjectId userId FK
-    string source
-    string destination
-    number budget
-    array tripOptions
-    string selectedPlan
-    date createdAt
-}
-USERS ||--o{ SAVED_PLANS : "has"
+flowchart LR
+    USERS["USERS
+    _id PK
+    name
+    email
+    passwordHash
+    createdAt"] -->|has| SAVED_PLANS["SAVED_PLANS
+    _id PK
+    userId FK
+    source
+    destination
+    budget
+    tripOptions
+    selectedPlan
+    createdAt"]
 
 ```

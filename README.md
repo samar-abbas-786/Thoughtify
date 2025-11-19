@@ -1,4 +1,5 @@
 ```mermaid
+%%{init: {"themeVariables": {"er": {"layout": "horizontal"}}}}%%
 erDiagram
 USERS {
     ObjectId _id PK
@@ -18,4 +19,5 @@ SAVED_PLANS {
     date createdAt
 }
 USERS ||--o{ SAVED_PLANS : "has"
+
 ```

@@ -1,4 +1,5 @@
 ```mermaid
+%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#f0f0f0", "edgeLabelBackground":"#ffffff"}}}%%
 erDiagram
 USERS {
     ObjectId _id PK

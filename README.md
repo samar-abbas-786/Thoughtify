@@ -1,4 +1,3 @@
-```mermaid
 flowchart LR
   subgraph Client
     A[Mobile App (iOS/Android)] 
@@ -26,4 +25,3 @@ flowchart LR
   C -->|Read/Write| G
   C -->|Store files| H
   C -->|Serve metrics| I
-```

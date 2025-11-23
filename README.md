@@ -1,24 +1,32 @@
 ```mermaid
-%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#f0f0f0", "edgeLabelBackground":"#ffffff"}}}%%
-erDiagram
-USERS {
-    ObjectId _id PK
-    string name
-    string email
-    string passwordHash
-    date createdAt
-}
-SAVED_PLANS {
-    ObjectId _id PK
-    ObjectId userId FK
-    string source
-    string destination
-    number budget
-    array tripOptions
-    string selectedPlan
-    date createdAt
-}
-USERS ||--o{ SAVED_PLANS : "has"
+flowchart LR
+  subgraph Client
+    A[Mobile App (iOS/Android)] 
+    B[Web App (React)]
+  end
+
+  subgraph API
+    C[Backend REST / GraphQL API]
+    C --> D[Auth Service (JWT / Refresh tokens)]
+    C --> E[Export Service (PDF/Excel renderer)]
+    C --> F[Share Service (generate shareable assets)]
+  end
+
+  subgraph DB
+    G[(Primary DB - MongoDB/Postgres)]
+    H[(File Storage - S3 / Cloud Storage)]
+  end
+
+  subgraph Admin
+    I[Admin Dashboard]
+  end
+
+  A -->|HTTPS| C
+  B -->|HTTPS| C
+  C -->|Read/Write| G
+  C -->|Store files| H
+  C -->|Serve metrics| I
+
 
 
 ```

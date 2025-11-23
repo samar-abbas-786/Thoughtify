@@ -26,7 +26,4 @@ flowchart LR
   C -->|Read/Write| G
   C -->|Store files| H
   C -->|Serve metrics| I
-
-
-
 ```

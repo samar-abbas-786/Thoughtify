@@ -11,6 +11,9 @@ export const POST = async (request) => {
     where: {
       user_id: id,
     },
+    orderBy: {
+      createdAt: "desc",
+    },
   });
   if (post.length == 0) {
     return NextResponse.json({ message: "No Post Added" });

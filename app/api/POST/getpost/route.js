@@ -6,6 +6,9 @@ export const GET = async (request) => {
     include: {
       user: true,
     },
+    orderBy:{
+      
+    }
   });
   return NextResponse.json({ message: "Posts find successfully", post });
 };

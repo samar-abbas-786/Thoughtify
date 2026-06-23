@@ -48,12 +48,12 @@ const Navbar = () => {
                 >
                   Sign In
                 </Link>
-                <Link
+                {/* <Link
                   href="/signup"
                   className="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
                 >
                   Sign Up
-                </Link>
+                </Link> */}
               </>
             ) : (
               <Link
@@ -134,12 +134,12 @@ const Navbar = () => {
                 >
                   Sign In
                 </Link>
-                <Link
+                {/* <Link
                   href="/signup"
                   className="block px-3 py-2 rounded-md text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 text-center"
                 >
                   Sign Up
-                </Link>
+                </Link> */}
               </>
             ) : (
               <Link

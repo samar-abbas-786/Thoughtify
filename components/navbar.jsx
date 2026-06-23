@@ -42,12 +42,12 @@ const Navbar = () => {
 
             {!isLoggedIn ? (
               <>
-                <Link
+                {/* <Link
                   href="/login"
                   className="text-gray-500 hover:text-gray-700 text-sm font-medium"
                 >
                   Sign In
-                </Link>
+                </Link> */}
                 {/* <Link
                   href="/signup"
                   className="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
@@ -128,12 +128,12 @@ const Navbar = () => {
 
             {!isLoggedIn ? (
               <>
-                <Link
+                {/* <Link
                   href="/login"
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
                 >
                   Sign In
-                </Link>
+                </Link> */}
                 {/* <Link
                   href="/signup"
                   className="block px-3 py-2 rounded-md text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 text-center"
